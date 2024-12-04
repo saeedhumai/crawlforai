@@ -5,12 +5,12 @@ A Python-based asynchronous web crawler that extracts content from websites and 
 ## Quick Start
 
 ```bash
-git clone https://github.com/yourusername/crawl4ai.git
+git clone git@github.com:saeedhumai/crawlforai.git
 cd crawl4ai
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-python main.py --url "https://example.com"
+python main.py --url "https://saeedanwar.pro"
 ```
 
 ## Prerequisites
@@ -60,13 +60,6 @@ python main.py \
     --timeout 30
 ```
 
-### Command Line Arguments
-
-- `--url`: Starting URL for crawling (required)
-- `--depth`: Maximum crawling depth (default: 2)
-- `--output`: Output file path (default: 'output.json')
-- `--concurrent`: Number of concurrent requests (default: 5)
-- `--timeout`: Request timeout in seconds (default: 30)
 
 ## Project Structure
 
@@ -92,8 +85,3 @@ crawl4ai/
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-- Thanks to all contributors
-- Built with Python's asyncio for high-performance crawling
-- Inspired by modern web scraping best practices
