@@ -5,15 +5,12 @@ from crawl4ai import AsyncWebCrawler, CacheMode
 from fastapi import FastAPI
 app = FastAPI()
 
-@app.put("/crawl")
-async def main(weburl: str):
+@app.post("/crawl")
+async def crawl_webpage(weburl: str):
    async with AsyncWebCrawler(verbose=True) as crawler:
       result = await crawler.arun(url=weburl)
-      
-      # Create a timestamp for the filename
-      timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-      filename = f"crawl_result_{timestamp}.txt"
-      
+   
+      filename = "results"
       # Ensure 'results' directory exists
       os.makedirs('results', exist_ok=True)
       
@@ -33,6 +30,7 @@ async def main(weburl: str):
       
       print(f"Results saved to: results/{filename}")
       print(f"First 500 characters of crawl result: {result.markdown[:500]}")
+      return {"message": "Crawl completed successfully"}
 
 
 
