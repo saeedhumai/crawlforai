@@ -2,9 +2,13 @@ import os
 import asyncio  # Add this import
 from datetime import datetime
 from crawl4ai import AsyncWebCrawler, CacheMode
-async def main():
+from fastapi import FastAPI
+app = FastAPI()
+
+@app.put("/crawl")
+async def main(weburl: str):
    async with AsyncWebCrawler(verbose=True) as crawler:
-      result = await crawler.arun(url="https://www.saeedanwar.pro")
+      result = await crawler.arun(url=weburl)
       
       # Create a timestamp for the filename
       timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -17,7 +21,7 @@ async def main():
       with open(f"results/{filename}", 'w', encoding='utf-8') as f:
          f.write("=" * 50 + "\n")
          f.write("Web Crawl Results\n")
-         f.write(f"URL: https://www.saeedanwar.pro\n")
+         f.write(f"URL: {weburl}\n")
          f.write(f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
          f.write("=" * 50 + "\n\n")
          
