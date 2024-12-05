@@ -39,6 +39,4 @@ results/
 .cache/
 .pytest_cache/
 
-# Logs
-*.log
-.vercel
+
