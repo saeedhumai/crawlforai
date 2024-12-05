@@ -2,10 +2,24 @@ import os
 from datetime import datetime
 from crawl4ai import AsyncWebCrawler, CacheMode
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 
-app = FastAPI()
+app = FastAPI(
+    title="Crawl4AI API",
+    description="A web crawling API using Crawl4AI",
+    version="1.0.0"
+)
+
+@app.get("/")
+async def root():
+    return JSONResponse({
+        "message": "Welcome to Crawl4AI API",
+        "docs": "/docs",
+        "endpoints": {
+            "crawl": "/crawl"
+        }
+    })
 
 # Create a model for the URL input
 class CrawlRequest(BaseModel):
